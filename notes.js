@@ -252,7 +252,7 @@ numbers.sort(function(a,b) {
     return a - b;
 });
 
-// Objects (Dictionary/Hash Table)
+// Object literal (Dictionary/Hash Table)
 
 // Object structure
 let object = {
@@ -263,4 +263,21 @@ let object = {
         nested_key: "nested value"
     }
 };
+
+// Defining a method in an object literal
+let book = {
+    title: "Quiet",
+    author: {
+        firstName: "Susan",
+        lastName: "Cain"
+    },
+
+    // Define a method
+    getAuthorName() {
+        return this.author.firstName + " " + this.author.lastName;
+    }
+};
+
+// Call the method that is defined inside the object
+let name = book.getAuthorName();
 
