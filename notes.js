@@ -254,6 +254,8 @@ numbers.sort(function(a,b) {
 
 // Object literal (Dictionary/Hash Table)
 
+/* An object is an unordered collection of properties */
+
 // Object structure
 let object = {
     key: "value"
@@ -280,4 +282,132 @@ let book = {
 
 // Call the method that is defined inside the object
 let name = book.getAuthorName();
+
+// Accessor properties
+
+// Getter
+get property() { return someValue; }
+
+// Setter
+set property(value) { ... }
+
+// Getter/Setter example
+let rectangle = {
+    width = 5,
+    height = 8,
+    get area() {
+        return this.width * this.height;
+    },
+    set area(value) {
+        // Set width and height to the square root of the value
+        this.width = Math.sqrt(value);
+        this.height = this.width;
+    }
+};
+
+let area = rectangle.area; // Calling getter returns 40
+rectangle.area = 100; // Calling setter sets width and height to 10
+console.log(rectangle.width); // 10
+
+/* 
+Javascript data types can be divided into two categories: primitives and references
+- A primitive is data that is not an object and includes no methods (boolean, number, string, null and undefined)
+- A reference is a logical memory address. Only objects are reference types
+*/
+
+// Maps/Objects as maps
+
+/* A map or associative array is a data structure that maps keys to values. Each key to value pair is called an element */
+
+// Map structure
+let stateCapitals = {
+    AR: "Little Rock",
+    CO: "Denver",
+    NM: "Sante Fe"
+};
+
+console.log("CO capital is " + stateCapitals["CO"]);
+
+stateCapitals["TX"] = "Austin";
+
+// Nested map objects
+let contacts = {
+    Rosa: {
+        phone: "303-555-4321",
+        email: "rosa@gmail.com"
+    },
+    Dave: {
+        phone: "501-533-9988",
+        email: "dave@yahoo.com"
+    },
+    Li: {
+        phone: "213-511-6785",
+        email: "li@msn.com"
+    }
+};
+
+console.log(contacts["Dave"].email); // Output Dave's email address
+
+contacts["Rosa"].twitter = "@rosaLuvsCats"; // Assigns property twitter with "@rosaLuvsCats" to the nested Rosa object
+
+contacts["John"] = {
+    phone: "111-2222",
+    email: "john@work.org"
+} // Adds the John object to the contacts map object
+
+// For-in loop
+
+/* The for-in loop iterates over an objects properties in arbitrary order and is ideal for looping through an object's map elements */
+
+// For-in loop structure
+for (let variable in object) {
+    body
+}
+
+//Example
+let stateCapitals = {
+    AR: "Little Rock",
+    CO: "Denver",
+    NM: "Sante Fe"
+};
+
+console.log("All capitals")
+for (let state in stateCapitals) {
+    console.log(state + " is " + stateCapitals[state]);
+} // Outputs key and value of every pair in stateCapitals map object
+
+// Other object map operations
+
+/*
+- Object.keys() returns an array of an objects property names, the arrays length property returns the number of elements in the object map
+- The in operator returns true if an object contains the given property and returns false otherwise
+- The delete operator removes a key/property from a map or object
+*/
+
+// Example
+let stateCapitals = {
+    AR: "Little Rock",
+    CO: "Denver",
+    NM: "Sante Fe"
+};
+
+let states = Object.keys(stateCapitals);
+console.log(states) // Outputs array
+console.log(states.length) // Outputs array length
+
+// Evaluates true
+if ("NM" in stateCapitals) {
+    console.log("NM exists");
+}
+
+// Remove the NM/Sante Fe pair
+delete stateCapitals["NM"];
+
+//Evaluates false
+if ("NM" in stateCapitals) {
+    console.log("NM exists");
+}
+
+// Outputs undefined
+console.log(stateCapitals["NM"]);
 
