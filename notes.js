@@ -411,3 +411,34 @@ if ("NM" in stateCapitals) {
 // Outputs undefined
 console.log(stateCapitals["NM"]);
 
+// Map object
+
+/* The Map object is a newer alternative to using objects for storing key/value pairs. Common methods and properties of the map object include:
+
+- The set(key, value) methis sets a key/value pair. If the key is new, a new element is added to the map. If the key already exists, the new value
+replaces the existing value
+- The get(key) method gets a key's associates value
+- The has(key) method returns true if a map conains a key, false otherwise
+- The delete(key) method removes a map element
+- The size property is the of elements in the map
+
+*/
+
+// Map object structure
+let stateCapitals = new Map();
+stateCapitals.set("AR", "Little Rock");
+stateCapitals.set("CO", "Denver");
+stateCapitals.set("NM", "Sante Fe");
+
+console.log("Size of map is " + stateCapitals.size);
+
+if (stateCapitals.has("CO")) {
+    console.log("CO capital is " + stateCapitals.get("CO"));
+}
+
+//For-of loop
+console.log("All capitals:");
+for (let [state, capital] of stateCapitals) {
+    console.log(state + " is " + capital);
+} // Each of the maps key/value pairs are assigned with the [key, value] variables declared in the for-of loop
+
