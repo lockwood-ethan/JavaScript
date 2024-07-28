@@ -417,7 +417,7 @@ console.log(stateCapitals["NM"]);
 
 - The set(key, value) methis sets a key/value pair. If the key is new, a new element is added to the map. If the key already exists, the new value
 replaces the existing value
-- The get(key) method gets a key's associates value
+- The get(key) method gets a key's associated value
 - The has(key) method returns true if a map conains a key, false otherwise
 - The delete(key) method removes a map element
 - The size property is the of elements in the map
@@ -442,3 +442,79 @@ for (let [state, capital] of stateCapitals) {
     console.log(state + " is " + capital);
 } // Each of the maps key/value pairs are assigned with the [key, value] variables declared in the for-of loop
 
+// String object
+
+/* The String object defines methods to manipulate strings, extract substrings, test for string inclusion, etc.
+
+- The method charAt() returns the character at the specified index as a string. "test".charAt(1) returns the character "e" at index 1
+- The length property returns the number of characters in a string
+- The indexOf() method returns the index of the search string's first occurence inside the string object or -1 if the search string is not found
+- The lastIndexOf() method returns the index of the search string's last occurence inside the string object or -1 if the search string is not found
+- The replace() method replaces one string with another and returns the string with the replacement string inside
+
+*/
+
+// Example of charAt() and length in use
+let s = "I love JS";
+let totalSpaces = 0;
+
+for (let i = 0; i < s.length; i++) {
+  if (s.charAt(i) === " ") {
+     totalSpaces++;
+  }
+}
+
+console.log(totalSpaces + " spaces");
+
+// Example of indexOf() and lastIndexOf()
+s = "Seek and you will find.";
+s.indexOf("and");    // 5
+s.indexOf("e");      // 1 (first occurrence)
+s.lastIndexOf("e");  // 2 (last occurrence)
+s.indexOf("SEEK");   // -1 (case-sensitive search)
+
+// Example of replace()
+s = "Seek and you will find.";
+s = s.replace("find", "discover");  // "Seek and you will discover"
+s = s.replace("Seek", "Search");    // "Search and you will discover"
+s = s.replace("SEARCH", "search");  // No change (case-sensitive search)
+
+// Other String methods
+
+// substr() - Returns the substring that begins at a given index and has an optional given length
+s = "As you wish.";
+s.substr(3, 3);  // "you"
+s.substr(3);   // "you wish." (length optional)
+
+// substring() - Returns the substring between two indices, not including the second index
+s = "As you wish.";
+s.substring(3, 6);  // "you"
+s.substring(3);   // "you wish." (2nd index optional)
+
+// split() - Returns an array of strings formed by splitting the string into substrings. The given delimiter separates substrings
+s = "As you wish.";
+s.split(" ");  // ["As", "you", "wish."]
+
+// toLowerCase() - Returns the string converted to lowercase characters
+s = "What?";
+s.toLowerCase();  // "what?"
+
+// toUpperCase() - Returns the string converted to uppercase characters
+s = "What?";
+s.toUpperCase(); // "WHAT?"
+
+// trim() - Returns the string with leading and trailing whitespace removed
+s = " test ";
+s.trim(); // "test"
+
+// Template literals
+
+/* A template literal is a string literal enclosed by the back-tick(`) that allows embedding expressions with a dollar sign and braces */
+
+// Example
+let test = `test ${1 +2}` // evaluates to "test 3"
+
+// Do not need to use \n for newline in template literal
+test = `line 1
+line 2
+line 3`
