@@ -518,3 +518,130 @@ let test = `test ${1 +2}` // evaluates to "test 3"
 test = `line 1
 line 2
 line 3`
+
+// Date object
+
+/* A Date object represents a single moment in time, based on the number of milliseconds since the Unix Epoch (January 1, 1970 UTC) */
+
+// Set to current date and time
+let currDateTime = new Date(); 
+
+// 1000 milliseconds past Jan 1, 1970
+let oneSecPastEpoch = new Date(1000); 
+
+// Set to George Washingtons birthday, month variable range is 0-11 (0 = Jan, 11 = Dec)
+let georgeBirthday = new Date(1732, 1, 22); 
+
+// Set to a future date (Oct 21st, 2035 at 7:28:00)
+let theFuture = new Date(2035, 9, 21, 7, 28, 0)
+
+// Date methods
+
+// getDate(), setDate() - Gets or sets the day relative to the current set month
+let day = new Date(2016, 0, 30);
+day.getDate();    // 30
+day.setDate(21);  // 30 -> 21
+
+// getDay() - Returns the day of the week (0-6)
+let day = new Date(2016, 0, 30);
+day.getDay();    // 6 = Saturday
+
+// getFullYear(), setFullYear() - Gets or sets the 4 digit year
+let day = new Date(2016, 0, 30);
+day.getFullYear();      // 2016
+day.setFullYear(2017);  // 2016 -> 2017
+
+// getHours(), setHours() - Gets or sets the hour (0-23)
+let day = new Date(2016, 0, 30, 5, 0);
+day.getHours();    // 5
+day.setHours(2);   // 5 -> 2
+
+// getMilliseconds(), setMilliseconds() - Gets or sets milliseconds(0-999)
+let day = new Date(2016, 0, 1, 5, 20, 10, 250);
+day.getMilliseconds();     // 250
+day.setMilliseconds(500);  // 250 -> 500
+
+// getMinutes(), setMinutes - Gets or sets the minutes (0-59)
+let day = new Date(2016, 0, 30, 5, 20);
+day.getMinutes();    // 20
+day.setMinutes(35);  // 20 -> 35
+
+// getMonth(), setMonth() - Gets or sets the month (0-11)
+let day = new Date(2016, 0, 30, 5, 20);
+day.getMonth();   // 0
+day.setMonth(3);  // 0 (Jan) -> 3 (Apr)
+
+// getSeconds(), setSeconds() - Gets or sets seconds (0-59)
+let day = new Date(2016, 0, 1, 5, 20, 10, 250);
+day.getSeconds();    // 10
+day.setSeconds(45);  // 10 -> 45
+
+// getTime(), setTime() - Gets or sets the number of milliseconds since Jan 1, 1970, 00:00:00 UTC
+let day = new Date(2016, 0, 30, 5, 20);
+day.getTime();               // 1454152800000
+day.setTime(1454153700000);  // Sat Jan 30 2016 05:35:00 GMT-0600
+
+// Math object
+
+/* The Math object provides properties for mathematical constants and methods to perform mathematical functions */
+
+// abs(x) - Returns the absolute value of x
+Math.abs(-5); // 5
+
+// ceil(x) - Returns x rounded up to the nearest integer
+Math.ceil(2.1); // 3
+
+// cos(x) - Returns the cosine of the radians x
+Math.cos(Math.PI); // 1
+
+// floor(x) - Returns x rounded down to the nearest integer
+Math.floor(2.9); // 2
+
+// log(x) - Returns the natural logarithm of x
+Math.log(Math.E); // 1
+
+// max(n1, n2, n3, ...) - Returns the largest number
+Math.max(5, 2, 8, 1); // 8
+
+// min(n1, n2, n3, ...) - Returns the smallest number
+Math.min(5, 2, 8, 1); // 1
+
+// pow(x, y) - Returns to the power of y
+Math.pow(2, 3); // 8
+
+// round(x) - Returns x rounded to the nearest integer
+Math.round(3.5); // 4
+
+// sin(x) - Returns the sine of radians x
+Math.sin(Math.PI); // 0
+
+// sqrt(x) - Returns the square root of x
+Math.sqrt(25); // 5
+
+// tan(x) - Returns the tangent of radians x
+Math.tan(Math.PI / 4) // 1
+
+// The Math.random() method returns a pseudo-random number >= 0 and < 1
+for (let i = 0; i < 5; i++) {
+    console.log(Math.random());
+}
+
+// Return a random integer between min and max (inclusive)
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+for (let i = 0; i < 5; i++) {
+    console.log(getRandomNumber(1, 10));
+}
+
+// Exception and try-catch
+
+/* An exception is an error that disrupts the normal flow of program execution. */
+
+// Throw statement structure
+throw expression
+
+// Example
+throw "number is negative"
+
