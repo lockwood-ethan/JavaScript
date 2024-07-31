@@ -47,7 +47,7 @@ points *= 3 + 1 == points = points * (3 + 1)
 // Convert strings to numbers
 parseInt("5") == 5
 parseFloat("5") == 5.0
-parseInt("dog") == NaN (Not a Number)
+parseInt("dog") == NaN // Not a Number
 
 // Check if data type is NaN - Not a Number
 isNaN("5") == false
@@ -644,4 +644,48 @@ throw expression
 
 // Example
 throw "number is negative"
+
+// Try-catch structure
+try {
+    // Statements that might throw an exception
+}
+catch (expression) {
+    // Handle the exception
+}
+
+// Finally block
+
+/* A finally block may follow a try or catch block. The finally block executes regardless of whether an exception was thrown or not */
+
+// Try-catch-finally structure
+try {
+    // Statements to try
+}
+catch (exception) {
+    // Optionally handle exception
+}
+finally {
+    // Code that executes no matter what
+}
+
+// Error object
+
+/* 
+The error object represents a runtime error, which is an error that occurs when the program is executing. An error object has two properties:
+
+1. name - The error's name
+2. message - The error's message
+
+*/
+
+// Error constructor example
+err = new Error("My error message.");
+
+/* Other error contructors
+
+RangeError - Thrown when a numeric variable or parameter is outside the valid range
+InternalError - Thrown when an internal error occurs in JavaScript interpreter
+TypeError - Thrown when a variable or parameter is not the expected data type
+
+*/
 
