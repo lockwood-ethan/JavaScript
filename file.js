@@ -1,0 +1,1 @@
+alert("Click OK or press Enter");
