@@ -359,3 +359,96 @@ elem.classList.toggle("mystyle") // toggles the class mystyle on or off
 elem.className = "cat adopted" // Assigns the cat and adopted classes to the element and removes any previously assigned classes from the node
 /* All classes assigned to className are also added to the node's classList, using classList as often as possible is best practice */
 
+// Validating form input with JavaScript
+
+/* Each textual input element in an HTML document has a value attribute that is associated with the user-entered text. The value attribute can be used to validate user-entered text by checking desired properties, such as:
+
+- Checking for a specific length using the length property on the value attribute
+- Checking if entered text is a specific value using ===
+- Checking if the text contains a specific value using the string indexOf() method on the value attribute
+- Checking if the text is a number using isNaN()
+- Checking that text matches a desired pattern using a regular expression and the string match() method
+
+
+- Drop-down menus also have a value attribute associated with the user-selected menu uption
+
+- Checkboxes and radio buttons have a checked attribute that is a boolean value
+*/
+
+// Validating form data upon submission
+
+/* Validating form data using JavaScript that executes when the user submits the form can be performed by:
+
+- Register a handler for the form's submission event that executes a validation function
+- Within the validation function, inspect the form's input field via the appropriate DOM elements and element attributes
+- If the form is invalid, call the preventDefault() method on the event to cancel the form submission and prevent the form data from being sent to the server
+*/
+
+// Validating each field as data is entered
+
+/* Alternatively, form data can be validated as the user enters data in the form by:
+
+- For each field that should be validated:
+    - Register an input event handler for the field
+    - Create a global variable to track whether the field is currently invalid. In most cases, this global variable should be initialized to false since the form typically starts with the field as invalid
+    - Modify the global variable as appropriate within the field's event handler
+- Register a submit event handler for the form that verifies the global variables for each field are true
+- If one or more of the global variables are false, call the preventDefault() method on the submit event to prevent the form from submitting to the server
+*/
+
+// Using HTML form validation
+
+/* Various HTML elements allow the browser to do validation without using JavaScript:
+
+- The required attribute indicates that the field must have a value (text or selection) prior to submitting the form
+- The max and min attributes indicate the maximum and minimum values respectively that can be entered in an input field with ranges, such as date or number
+- The maxlength and minlength attributes indicate the maximum and minimum length of input allowed by an input field
+- The pattern attribute provides a regular expression that valid input must match
+- The title attribute can be used to provide a description of valid input when using the pattern attribute
+*/
+
+/* Several CSS pseudo-classes exist to style input and form elements:
+
+- The :valid pseudo-class is active on an element when the element meets all the stated requirements in field attributes
+- The :invalid pseudo-class is active on an element when one or more of the attributes in the field are not fully met
+- The :required pseudo-class is active on an element if the element has the required attribute set
+- The :optional pseudo-class is active on an element if the element does not have the required attribute set
+*/
+
+// Working with JSON (see Introduction.json for basic data types in JSON)
+
+/* JavaScript provides a built-in JSON object that provides two methods for working with JSON */
+
+JSON.parse() // Creates a JavaScript object from a string containing JSON
+JSON.parse('[1, "two", null]') // Converts the string '[1, "two", null]' into the JavaScript array [1, "two", null]
+// Typically JSON.parse() is used with date received from a server
+
+JSON.stringify() // Creates a string from a JavaScript object
+JSON.stringify(new Date('2020-08-06')) // Converts the JavaScript Date object to the string 2020-08-06T00:00:00z by calling the Date object's toJSON() method
+// Typically, JSON.stringify() is used with data sent to a server
+
+// Good practice is to use single quotes around JavaScript strings that contain JSON notation so that the double quotes for strings and JSON object names do not need to be escaped. Use '{"name":"Bob"}' instead of "{"name":"Bob"}"
+
+// The JSON.parse() reviver function is used to modify parsed values before being returned, and is helpful when a JSON string represents a data type not available in JSON
+
+// The JSON.stringify() replacer enables customization of the generated string
+
+// The JSON.stringify() spacer controls the indentation spacing of output JSON string, which indicates the depth of values in the object
+
+// XMLHttpRequest (Ajax)
+
+/* Ajax(Asynchronous JavaScript and XML) is a techique to asynchronously communicate with a server and update a web page once the response is received, without reloading the whole webpage
+
+Asynchronous request - When the web application sends a request to the server and continues running without waiting for the server response
+
+XMLHttpRequest - An object for communicating with web servers using Ajax. Allows the web browser to hide the communication latency and continue to provide a responsive user interface while waiting for a server response
+*/ 
+
+/* The steps for using the XMLHttpRequest API are:
+
+- Create a new XMLHttpRequest object
+- Assign handlers to the desired events via the addEventListener() method. If the handlers are not set up prior to calling the open() method, the progress events will not execute
+- Initialize a connection to a remote resource using the open() method. The open() method takes two arguments: the HTTP request type and the URL for the resource
+- Modify the default HTTP request headers if needed with the setRequestHeader() method
+- Send the HTTP request via the send() method. For POST requests, the data to be sent with the request is passed as the argument to the send() method */
+

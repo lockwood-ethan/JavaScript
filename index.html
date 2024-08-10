@@ -8,14 +8,14 @@
     <h1>Magic 8 Ball</h1>
     <script>
     // Possible 8 ball responses
-    let responses = [ "Without a doubt", "Ask again later", "Don't count on it", "Seriously, go away", "I dislike you", "Leave me alone or I'll scream" ];
+    // let responses = [ "Without a doubt", "Ask again later", "Don't count on it", "Seriously, go away", "I dislike you", "Leave me alone or I'll scream" ];
 
     // Display a randomly chosen response
-    function answerInterval() {
-        let randomNum = Math.floor(Math.random() * responses.length);
-        document.writeln("<p>Magic 8 Ball says... <strong>" + responses[randomNum] + "</strong>.</p>");
-    }
-    timerId = setInterval(answerInterval, 10000);
+    // function answerInterval() {
+    //     let randomNum = Math.floor(Math.random() * responses.length);
+    //     document.writeln("<p>Magic 8 Ball says... <strong>" + responses[randomNum] + "</strong>.</p>");
+    // }
+    // timerId = setInterval(answerInterval, 10000);
     </script>
 </body>
 </html>
@@ -82,6 +82,19 @@
 
     <div id="mydiv" style="width: 100px; height: 100px; background-color: green; color: red; font-size: 36px" >This is a div</div> <!--The CSS values are changed in file.js-->
 
+    <script src="validate.js" defer></script>
+    <!-- <form id="tosForm" action="https://example.com" target="_blank" method="POST">
+        <p>
+           <label for="tos">I agree to the terms of service:</label>
+           <input type="checkbox" id="tos">
+        </p>
+        <input type="submit" value="Submit"> Validating form data upon submission
+     </form> -->
+    <form id="tosForm">
+        <label for="zip">ZIP:</label>
+        <input type="text" id="zip">
+        <input type="submit" value="Submit">
+    </form> <!--Validating each field as data is entered-->
 </body>
 </html>
 

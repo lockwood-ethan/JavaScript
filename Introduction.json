@@ -1,0 +1,12 @@
+{
+    "Introduction to JSON": "This is how you have to enter comments in JSON",
+    "JSON": "JavaScript Object Notation(JSON) is an efficient, structured format for data based on a subset of the JavaScript language",
+
+    "Six basic data types": "JSON",
+    "String": "Unicode characters enclosed within double quotes(\"). A few special characters must be escaped with a single backslash (\\).",
+    "Number": "Either an integer or decimal number",
+    "Object": "Unordered list of zero or more name/value pairs separated by commas and enclosed within braces({}). A name in a JSON object must be a string in double quotes. A value can be any legal JSON value. Each name and value is separated by a colon",
+    "Array": "Ordered list of zero or more JSON values separated by commas and enclosed within brackets([])",
+    "Boolean": "Either true or false",
+    "null": "Represents 'nothing'"
+}
