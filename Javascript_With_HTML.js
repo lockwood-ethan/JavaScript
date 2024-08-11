@@ -375,6 +375,24 @@ elem.className = "cat adopted" // Assigns the cat and adopted classes to the ele
 - Checkboxes and radio buttons have a checked attribute that is a boolean value
 */
 
+let salePriceWidget = document.querySelector("#salePrice");
+let errorMsg = document.querySelector("#errorMsg");
+
+errorMsg.innerHTML = "";
+
+if (salePriceWidget.value.length === 0) {
+    errorMsg.innerHTML = "Sale price is missing.";
+}
+else if (isNaN(salePriceWidget.value)) {
+    errorMsg.innerHTML = "Please enter a number.";
+}
+else {
+    let salePrice = parseFloat(salePriceWidget.value);
+    if (salePrice < 10 || salePrice > 1000) {
+        errorMsg.innerHTML = "Must be between $10 and $1000.";
+    }
+}
+
 // Validating form data upon submission
 
 /* Validating form data using JavaScript that executes when the user submits the form can be performed by:
@@ -383,6 +401,18 @@ elem.className = "cat adopted" // Assigns the cat and adopted classes to the ele
 - Within the validation function, inspect the form's input field via the appropriate DOM elements and element attributes
 - If the form is invalid, call the preventDefault() method on the event to cancel the form submission and prevent the form data from being sent to the server
 */
+
+function checkForm(event) {
+    let tosWidget = document.querySelector("#tos");
+
+    // Cancel form submission if tos is not checked
+    if (!tosWidget.checked) {
+        event.preventDefault();
+    }
+}
+
+let tosForm = document.querySelector("#tosForm");
+tosForm.addEventListener("submit", checkForm);
 
 // Validating each field as data is entered
 
@@ -395,6 +425,25 @@ elem.className = "cat adopted" // Assigns the cat and adopted classes to the ele
 - Register a submit event handler for the form that verifies the global variables for each field are true
 - If one or more of the global variables are false, call the preventDefault() method on the submit event to prevent the form from submitting to the server
 */
+
+let zipCodeValid = false;
+let zipCodeWidget = document.querySelector("#zip");
+zipCodeWidget.addEventListener("input", checkZipCode);
+
+function checkZipCode() {
+    let regex = /^\d\d\d\d\d$/;
+    let zip = zipCodeWidget.value.trim();
+    zipCodeValid = zip.match(regex);
+}
+
+let tosForm = document.querySelector("#tosForm");
+tosForm.addEventListener("submit", checkForm);
+
+function checkForm(event) {
+    if (!zipCodeValid) {
+        event.preventDefault();
+    }
+}
 
 // Using HTML form validation
 
@@ -449,6 +498,133 @@ XMLHttpRequest - An object for communicating with web servers using Ajax. Allows
 - Create a new XMLHttpRequest object
 - Assign handlers to the desired events via the addEventListener() method. If the handlers are not set up prior to calling the open() method, the progress events will not execute
 - Initialize a connection to a remote resource using the open() method. The open() method takes two arguments: the HTTP request type and the URL for the resource
-- Modify the default HTTP request headers if needed with the setRequestHeader() method
+- Modify the default HTTP request headers if needed with the setRequestHeader() method, xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
 - Send the HTTP request via the send() method. For POST requests, the data to be sent with the request is passed as the argument to the send() method */
+
+let movieInfo = document.getElementById("movieinfo")
+let xhr = XMLHttpRequest();
+xhr.addEventListener("load", function() {
+    movieInfo.innerHTML = xhr.response;
+});
+xhr.open("GET", "starwars.html");
+xhr.send();
+
+// XMLHttpRequest result handlers
+
+/* Good practice is to use a result handler for each specific result to separate functionality for each Ajax event
+
+The XMLHttpRequest result handlers are:
+
+"load" - Called when the exchange between the browser and server has completed. From the browsers perspective, the server received the request and responded. However, the request might not have been succesful because of a problem such as a non-existent webpage. The HTTP status code must be examined to check what type of response was received. Ex: 200 vs. 404. The load, error, and abort handlers are mutually exclusive and are called after any progress handlers
+
+"error" - Called when the browser does not receive an appropriate response to a request. Ex: The browser is unable to connect to the server, the connection between browser and server is cut in the middle of a response
+
+"abort" - Called when the browser is told to stop a request/response that is still in progress. Ex: The user closes the webpage that made the request
+
+"timeout" - Called if the browser takes too much time to fully receive a response to a request. The timeout is an optional value that can be provided before the request is made. By default, the browser does not provide a timeout for a request
+
+"readystatechange" - Relates to any change in the XMLHttpRequest. When XMLHttpRequest was originally defined, readystatechange was the only handler defined. As a result, many Ajax examples on the internet only use readystatechange and do not include other handlers. Load, error, abort, and timeout are replacements for readystatechange */
+
+// XMLHttpRequest progress handlers
+
+/* XMLHttpRequest progress handlers are:
+
+"loadstart" - Called when the browser begins to send a request. The loadstart handler is called before any other XMLHttpRequest handler
+
+"loadend" - Called after the browser receives the response. The loadend handler is called upon the both response success and failure, and is called after all other XMLHttpRequest handlers
+
+"progress" - Called one or more times while a response is being received by the client. Progress handlers are called before result handlers. The progress handler can be used to provide a data download progress indicator to the user. A similar handler is available to provide an indicator for uploaded data */
+
+// Attributes for determining XMLHttpRequest success
+
+/* The XMLHttpRequest object has attributes for checking the status of a response, which are usually used in the load handler and used to update the DOM
+
+"status" - The numeric code returned in the response
+
+"statusText" - The descriptive text describing the status attribute
+
+Common HTTP response status codes:
+
+200 - HTTP request successful
+3XX - General form for request redirection errors
+301 - Resource permanently moved, the new URL is provided
+4XX - General form for client errors
+400 - Bad request. Ex: incorrect request syntax
+401 - Unauthorized request. Ex: Not properly authenticated
+403 - Request forbidden. Ex: User does not have necessary permissions
+404 - Not found. Ex: Requested resource does not exist
+5XX - General form for server error codes
+500 - Internal server error. Ex: Server-side code crashed
+503 - Service unavailable. Ex: Webpage is temporarily unavailable due to site maintenance
+*/
+
+// Accessing Ajax response data
+
+/* The XMLHttpRequest object provides multiple ways to access the response data
+
+"response" - The response body, which is parsed by the browser according to the responseType attribute
+
+"responseText" - The plain text version of the response
+
+"responseXML" - The XML DOM version of the response. The responseXML attribute is only available as a DOM object if the response is a valid and correctly formatted XML document
+
+"responseType" - Set by the programmer to let the browser know the expected response data format
+    - If the responseType is set to "json", then the browser parses the entire response as a JSON object and sets the response attribute to the JSON object
+    - If the responseType attribute is either "" or "text", the browser leaves the response unprocessed, and the response attribute contains the same value as responseText
+    - If the responseType attribute is "document", the browser assumes the response is an XML document, and the response attribute contains the same value as responseXML */
+
+let searchBtn = document.getElementById("search");
+searchBtn.addEventListener("click", function() {
+    let xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", responseReceivedHandler);
+    xhr.responseType = "json";
+    let title = document.getElementById("title");
+    let queryString = "title=" + encodeURIComponent(title.value); // encodeURI component converts the space characters to %20 and ampersand to %26, the ASCII hex values
+    xhr.open("GET", "lookup.php?" + queryString);
+    xhr.send();
+});
+
+function responseReceivedHandler() {
+    let movieInfo = document.getElementById("movieinfo");
+    if (this.status === 200) {
+        let movie = this.response;
+        movieInfo.innerHTML = "<cite>" + movie.title + "</cite>" + movie.rating + ", released in " + movie.year;
+    }
+    else {
+        movieInfo.innerHTML = "Movie data unavailable.";
+    }
+}
+
+// Monitoring uploads
+
+/* The XMLHttpRequest object's upload attribute is an object for monitoring the status of the request being sent to the server. The upload attribute has the same handlers as the XMLHttpRequest object, but the progress handler is the only handler typically used for the upload attribute. The progress handler can be used to monitor the status of uploading large files, such as attaching a document to a Gmail message */
+
+function uploadProgressHandler(event) {
+    if (event.lengthComputable) {
+        console.log(event.loaded + "bytes uploaded out of " + event.total + " bytes total.");
+    }
+}
+
+let file = document.getElementById("file_widget").files[0];
+let xhr = new XMLHttpRequest();
+xhr.upload.addEventListener("progress", uploadProgressHandler);
+xhr.open("POST", "http://www.example.org/example.html");
+xhr.setRequestHeader("Content-Type", file.type);
+xhr.send(file);
+
+// Using third-party web APIs (JavaScript)
+
+/* A third-party web API is a public web API used by a webapplication to access data provided by a third party. To use a third-party web API, a developer usually registers with the third-party to obtain an API key.
+
+Third parties requires API keys for several reasons: 
+
+- The API key identifies who or what application is using the web API
+- The API key helps the third party limit the number of requests made to the API in a fixed time period or may be used to charge a developer a fee for additional requests
+- To obtain an API key, developers must agree to restrictions the third party places on data obtained from the web API */
+
+/* Most third-party web APIs are RESTful. A RESTful web API is a web API that is called with a URL that specifies API parameters and returns JSON or XML containing the API data. Ex: The URL http://linkedin.com/api/article?id=123 specifies the article ID 123, so the article would be returned formatted in JSON */
+
+/* A SOAP-based web API is another type of web API that relies heavily on XML and is in general more complex to use than RESTful web APIs */
+
+// Third-party web APIs may be called from the web server or the web browser. This shows how to call web APIs from the web browser using JavaScript
 
