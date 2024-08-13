@@ -628,3 +628,33 @@ Third parties requires API keys for several reasons:
 
 // Third-party web APIs may be called from the web server or the web browser. This shows how to call web APIs from the web browser using JavaScript
 
+function getForecast() {
+    let zipcode = document.getElementById("zipInput").value;
+    let xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", responseHandler);
+    xhr.open("GET", `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=b611de486c08e6571140b3c769d3cdd4&units=imperial`);
+    xhr.send();
+}
+
+// Cross-Origin requests
+
+/* Calling a third-party web API from the web browser requires a cross-origin HTTP request, since the web API is not hosted on the local webstie's web server.
+
+Two main techniques are used to make cross-origin requests:
+
+Cross-Origin Resource Sharing(CORS) - A W3C specification for how web browsers and web servers should communicate when making cross-origin requests
+
+JSON with Padding(JSONP) - A technique to circumvent cross-origin restrictions by injecting <script> elements dynamically into a webpage. Script elements have no cross-origin restrictions
+
+// Browser differenves
+
+/* A polyfill is JavaScript code that provides missing standard functionality for older browsers. A polyfill typically checks for the presence of a feature in the browser and uses the built in version if available. Otherwise, the polyfill executes JavaScript code that implements similar functionality. */
+
+// To use the following code, the jQuery and Modernizr libraries need to loaded
+$(function() {
+    if (!Modernizr.inputtypes['date']) { // Checks to see if the date input type is supported using Modernizr
+       $('input[type=date]').datepicker({ // If not, uses the jQuery date picker
+          dateFormat: 'mm-dd-yy'
+       });
+    }
+ });
