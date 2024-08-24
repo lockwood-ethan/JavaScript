@@ -104,5 +104,126 @@ let bob = new Student("Bob", 3.5);
 bob.sayHello();
 bob.sayGoodbye();
 
+
 // Classes in EcmaScript 2022
 
+/* A class is declared using the class keyword followed by a class name. The class is implemented by declaring fields and methods with braces. A field is a variable that stores data for a class. Each method declaration is similar to a function declaration, but without the function keyword. The method name constructor() is reserved for the class constructor() */
+
+// Example
+class City {
+    name;
+    state;
+
+    constructor(name, state) {
+        this.name = name;
+        this.state = state;
+    }
+
+    toHTML() {
+        return this.name + ", &nbsp;" + this.state;
+    }
+}
+
+let city1 = new City("Austin", "Texas");
+let city2 = new City("Madison", "Wisconsin");
+console.log(city1.toHTML());
+
+// Private fields and methods
+
+/* Fields and methods can be made private, or inaccessible from outside the class, by prefixing the field or method with #. */
+
+// Example
+class City {
+    #foundingYear;
+
+    constructor(name, state, foundingYear) {
+        this.name = name;
+        this.state= state;
+        this.#foundingYear = foundingYear;
+    }
+
+    toString() {
+        return this.name + ", " + this.state + " (" + this.#foundingYear + ")";
+    }
+}
+
+// Getters and setters
+
+/* A class method declaration preceded by the get keyword defines a getter method for a property. A class method declaration preceded by the set keyword defines a setter method for a property. Defining either a getter or setter method named X, adds a property named X to each class instance. A get method must not have parameters. A set method must have one parameter */
+
+// Example
+class Angle {
+    constructor(angleRadians) {
+        this.radians = angleRadians;
+    }
+
+    get degrees() {
+        return this.radians * 180.0 / Math.PI;
+    }
+
+    set degrees(angleDegrees) {
+        this.radians = angleDegrees * Math.PI / 180.0;
+    }
+}
+
+let angle1 = new Angle(Math.PI);
+console.log(angle1.degrees);
+angle1.degrees = 270.0;
+console.log(angle1.radians);
+
+// Static properties and methods
+
+/* A static property is a property that can be accessed without creating a class instance. A static method is a method that can be called without creating a class instance. Static properties and methods are declared with the static keyword preceding the property's field or method declaration. Static properties and methods cannot be accessed through a class instance. They must be accessed using the syntax ClassName.propertyMethodName */
+
+// Example
+class StringOps {
+    static description = "String operations";
+
+    static isLowerCase(str) {
+        return str.toLowerCase() === str;
+    }
+
+    static countChar(str, char) {
+        let count = 0;
+        for (let i = 0; i < str.length; i++) {
+            if (str.charAt(i) === char) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+console.log(StringOps.description);
+console.log(StringOps.isLowerCase("abc"));
+console.log(StringOps.isLowerCase("zyBooks"));
+console.log(StringOps.countChar("zyBooks", "c"));
+
+// Inheritance
+
+/* The extend keyword allows one class to inherit from another. In the inheriting class' constructor, calling the super() function calls the parent class' constructor. super() must be called before using the this keyword in the inheriting class' constructor */
+
+//Example
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    sayHello() {
+        console.log("Hello. My name is " + this.name + ".");
+    }
+}
+
+// Student inherits from Person
+class Student extends Person {
+    constructor(name, age, gpa) {
+        super(name, age); // Call parent constructor
+        this.gpa = gpa;
+    }
+
+    // Override parent's sayHello method
+    sayHello() {
+        console.log("Hi, I'm " + this.name + " with a " + this.gpa + " GPA!");
+    }
+}
